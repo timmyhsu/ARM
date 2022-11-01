@@ -6,10 +6,13 @@ TEX:
 main:
 
 	stmfd sp!, {r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,fp,lr}
+
 		mov r9,r1
 		@ldr r9, [r1,#0]
 		add r0 , r0 , #-1
 		mov r8 , r0 
+		ldr r0,= string3
+		bl printf
 		mov r7 , #0
 		mov r4 , #4
 	EQ :
@@ -33,7 +36,7 @@ main:
 		ldr r0 , [r9,r3]
 		bl atoi
 		cmp r10 , r0
-		movgt r5 , r6 
+		movlt r5 , r6 
 		add r6 , r6 , #1
 		cmp r6 , r8 
 		bgt EQ
@@ -60,7 +63,8 @@ main:
 	string1: 
 	.asciz "%d "
 	string2:
-	.asciz "999"
+	.asciz "-999"
+	string3:
+	.asciz "Sorting result is : "
+
 	.end
-
-
